@@ -31,6 +31,7 @@ services:
       dockerfile: infra/local/Dockerfile.seeder
     environment:
       DATABASE_URL: postgresql+asyncpg://tld:tld_password@db:5432/tld_db
+      SECRET_KEY: ${SECRET_KEY:-tld-local-secret-key-change-in-prod}
       ENVIRONMENT: development
       CHALLENGES_DIR: /app/challenges
     volumes:
@@ -52,7 +53,7 @@ services:
       - "9001:9001"
     environment:
       DATABASE_URL: postgresql+asyncpg://tld:tld_password@db:5432/tld_db
-      SECRET_KEY: tld-local-secret-key-change-in-prod
+      SECRET_KEY: ${SECRET_KEY:-tld-local-secret-key-change-in-prod}
       ENVIRONMENT: development
       FRONTEND_URL: http://localhost:9000
       ANALYTICS_ENABLED: "false"
